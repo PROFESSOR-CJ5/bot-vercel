@@ -1,11 +1,10 @@
+require('dotenv').config();
 const http = require('http');
 const qs = require('querystring');
-const fetch = require('node-fetch'); // Hakikisha umeinstall hii: npm install node-fetch
+const fetch = require('node-fetch');
 
-// HAPA NDIPO UNAWEKA TOKEN YAKO YA HUGGING FACE 👇
-const HF_TOKEN = "Bearer ***REMOVED***";  // ←←←← HAPA!!!
+const HF_TOKEN = "Bearer " + process.env.HF_TOKEN;
 
-// HTML ya bot UI
 const html = `
 <!DOCTYPE html>
 <html lang="sw">
@@ -109,7 +108,6 @@ const html = `
 </html>
 `;
 
-// SERVER
 const server = http.createServer((req, res) => {
   if (req.method === 'POST') {
     let data = '';
@@ -145,5 +143,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(process.env.PORT || 3000, () => {
-  console.log("Professor Bot is running on http://localhost:3000");
+  console.log("Professor Bot running...");
 });
